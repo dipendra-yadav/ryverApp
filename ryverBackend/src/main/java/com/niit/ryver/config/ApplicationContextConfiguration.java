@@ -40,7 +40,7 @@ public class ApplicationContextConfiguration {
 	@Value("${mysql.pw}")
 	private String password;
 
-	//@Profile("developemnt")
+	@Profile("developemnt")
 	@Bean(name = "devdataSource")
 	public DataSource getDevDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();

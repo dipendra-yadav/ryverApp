@@ -32,7 +32,10 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String userName;
 
-	//const
+	@Column(name = "isonline")
+	private String isOnline;
+
+	// const
 	public User() {
 		super();
 	}
@@ -84,6 +87,14 @@ public class User {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getIsOnline() {
+		return isOnline;
+	}
+
+	public void setIsOnline(String isOnline) {
+		this.isOnline = isOnline;
 	}
 
 }

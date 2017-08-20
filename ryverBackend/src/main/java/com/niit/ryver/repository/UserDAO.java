@@ -11,6 +11,9 @@ public interface UserDAO {
 
 	public List<User> getAllUsers();
 
-	public User login(User user);
+	public User authenticate(String name, String Password);
+
+	public boolean update(User user);
+
 
 }

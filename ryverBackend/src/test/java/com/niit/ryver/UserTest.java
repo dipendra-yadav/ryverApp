@@ -43,6 +43,7 @@ public class UserTest {
 		user.setEmailId("jayashree@gmail.com");
 		user.setPassword("007");
 		user.setUserName("deependra");
+		user.setIsOnline("true");
 		userDAO.insert(user);
 		assertEquals("Record Inserted!!", "jayashree", user.getFirstName());
 

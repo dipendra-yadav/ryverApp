@@ -17,12 +17,14 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 
+	// register
 	public User insert(User user) {
 		sessionFactory.getCurrentSession().save(user);
 		return user;
 
 	}
 
+	// getUser
 	public User getUserById(int id) {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class, id);
 		return user;
@@ -34,14 +36,34 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-	public User login(User user) {
-		System.out.println("Login hit******");
-		Query query = sessionFactory.getCurrentSession().createQuery("from User where userName=? and password=?");
-		query.setString(0, user.getUserName());
-		query.setString(1, user.getPassword());
+	// Login
+	public User authenticate(String name, String password) {
+		System.out.println("authenticate hit*********");
+		String hql = "from User where name = " + "'" + name + "' and " + " password='" + password + "'";
+		@SuppressWarnings({ "rawtypes" })
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		sessionFactory.getCurrentSession().flush();
 
-		User validUser = (User) query.uniqueResult();
-		return validUser;
+		@SuppressWarnings("unchecked")
+		List<User> list = query.list();
+		System.out.println("logged in User=" + list.toString());
+		if (list != null && !list.isEmpty()) {
+			return list.get(0);
+		}
+		// sessionFactory.getCurrentSession().close();
+		return null;
 	}
 
+	// Update
+	public boolean update(User user) {
+		try {
+			sessionFactory.getCurrentSession().update(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	
 }
