@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+<head>
+<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/index.css" />
+
+</head>
+
+<body>
+
+	<!-- navigation bar -->
+	<nav class="navbar navbar-default">
+
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+
+			<a class="navbar-brand" href="#/"><img src="" alt=""></a>
+
+		</div>
+
+		<div id="navbar-collapse" class="collapse navbar-collapse pull-right">
+
+			<!-- Login and Register -->
+			<ul class="nav navbar-nav">
+			    <li><a href="#/home" data-ng-show="currentUser.id">HOME</a></li>
+				<li><a href="#/login" data-ng-hide="currentUser.id">LOGIN</a></li>
+				<li><a href="#/register" data-ng-hide="currentUser.id">REGISTER</a></li>
+				<li><a href=""  data-ng-click="logout()"  data-ng-show="currentUser.id" class="">LOGOUT</a></li>
+
+			</ul>
+	</nav>
+
+
+
+	<div data-ng-view></div>
+
+
+	<footer> </footer>
+
+</body>
+
+<!-- AngularJS -->
+
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
+
+<!-- All  controller and services files -->
+
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="_user/usercontroller.js"></script>
+<script type="text/javascript" src="_user/userservice.js"></script>
+
+
+
+
+</html>

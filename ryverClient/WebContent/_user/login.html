@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+</head>
+<body>
+
+
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-sm-2 col-sm-offset-3 control-label">Enter
+				Username</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" data-ng-model="user.userName">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 col-sm-offset-3 control-label">Enter
+				Password</label>
+			<div class="col-sm-4">
+				<input type="password" class="form-control"
+					data-ng-model="user.password">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-5 col-sm-10">
+				<button type="submit" data-ng-click="login()"
+					class="btn btn-primary">Login</button>
+			</div>
+		</div>
+	</form>
+
+<div class="col-sm-offset-5 col-sm-10">{{message}}</div>
+<div class="col-sm-offset-5 col-sm-10">{{errormessage}}</div>
+
+
+
+
+
+</body>
+</html>
