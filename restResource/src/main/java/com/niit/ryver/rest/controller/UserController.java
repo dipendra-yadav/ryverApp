@@ -35,7 +35,7 @@ public class UserController {
 	public ResponseEntity<?> registerUser(@RequestBody User user) {
 
 		try {
-
+             System.out.println("registerUser Hit*****");
 			User savedUser = userDAO.insert(user);
 			if (savedUser.getId() == 0) {
 				com.niit.ryver.model.Error error = new com.niit.ryver.model.Error(2, "Couldnt insert user details ");
@@ -94,6 +94,7 @@ public class UserController {
 					"Username and password doesn't exists...");
 			return new ResponseEntity<com.niit.ryver.model.Error>(error, HttpStatus.UNAUTHORIZED);
 		} else {
+			System.out.println("Is new  Session getting created for this  user\t" + session.isNew());
 			session.setAttribute("user", validUser);
 
 			validUser.setIsOnline("true");
@@ -110,14 +111,27 @@ public class UserController {
 	// logout
 	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
 	public ResponseEntity<?> logout(HttpSession session) {
+		System.out.println("Is new Session at the Time of LogOut\t" + session.isNew());
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
 			user.setIsOnline("false");
 			userDAO.update(user);
+			session.removeAttribute("user");
+			session.invalidate();
+			System.out.println("Session got Invalidated!");
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
 		}
-		session.removeAttribute("user");
-		session.invalidate();
-		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ResponseEntity<?> getHome() {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+		}
+	}
 }

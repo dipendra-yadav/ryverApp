@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+//import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -17,13 +21,9 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@NotNull
-	private String firstName;
-
-	@NotNull
-	private String lastName;
-
-	@NotNull
+	@NotNull(message = "{register.pwd.invalid}")
+	//@Size(min = 6, max = 8, message = "{register.pwd.invalid}")
+	@Pattern(regexp = "{(?=.{8,8})(?=.*[A-Z])(?=.*[\\d])(?=.*[\\W])}")
 	private String password;
 
 	@NotNull
@@ -47,22 +47,6 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getPassword() {
@@ -95,6 +79,12 @@ public class User {
 
 	public void setIsOnline(String isOnline) {
 		this.isOnline = isOnline;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", password=" + password + ", emailId=" + emailId + ", userName=" + userName
+				+ ", isOnline=" + isOnline + "]";
 	}
 
 }

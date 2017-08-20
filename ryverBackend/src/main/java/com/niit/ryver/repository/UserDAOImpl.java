@@ -38,12 +38,10 @@ public class UserDAOImpl implements UserDAO {
 
 	// Login
 	public User authenticate(String name, String password) {
-		System.out.println("authenticate hit*********");
-		String hql = "from User where name = " + "'" + name + "' and " + " password='" + password + "'";
+		System.out.println("authenticating User *********");
+		String hql = "from User where  userName = " + "'" + name + "' and " + " password='" + password + "'";
 		@SuppressWarnings({ "rawtypes" })
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		sessionFactory.getCurrentSession().flush();
-
 		@SuppressWarnings("unchecked")
 		List<User> list = query.list();
 		System.out.println("logged in User=" + list.toString());
@@ -65,5 +63,4 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	
 }

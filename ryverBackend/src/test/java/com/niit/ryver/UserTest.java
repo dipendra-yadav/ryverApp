@@ -38,14 +38,12 @@ public class UserTest {
 
 	@Test
 	public void insertPositiveTestCase() {
-		user.setFirstName("jayashree");
-		user.setLastName("Yadav");
-		user.setEmailId("jayashree@gmail.com");
-		user.setPassword("007");
-		user.setUserName("deependra");
+		user.setEmailId("gautham@gmail.com");
+		user.setPassword("Niit@123");
+		user.setUserName("gautham");
 		user.setIsOnline("true");
 		userDAO.insert(user);
-		assertEquals("Record Inserted!!", "jayashree", user.getFirstName());
+		assertEquals("Record Inserted!!", "gautham", user.getUserName());
 
 	}
 
