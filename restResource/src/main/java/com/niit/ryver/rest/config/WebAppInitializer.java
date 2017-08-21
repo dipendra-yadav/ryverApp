@@ -1,5 +1,6 @@
 package com.niit.ryver.rest.config;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
@@ -31,6 +32,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		// activating Profile
 		servletContext.setInitParameter("spring.profiles.active", "developemnt");
 		System.out.println("developemnt profile activated!!");
+	}
+
+	@Override
+	protected Filter[] getServletFilters() {
+		Filter[] singleton = { new CORSFilter() };
+		return singleton;
 	}
 
 }
