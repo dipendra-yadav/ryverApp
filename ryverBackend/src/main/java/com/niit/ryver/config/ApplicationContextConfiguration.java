@@ -25,7 +25,7 @@ import com.niit.ryver.model.User;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.niit.ryver.*")
-@PropertySource(value = { "classpath:mysql.properties" })
+@PropertySource(value = { "classpath:mysql.properties", "classpath:oracle.properties" })
 public class ApplicationContextConfiguration {
 
 	@Value("${mysql.dc}")
@@ -51,20 +51,23 @@ public class ApplicationContextConfiguration {
 		return dataSource;
 	}
 
-	/*@Profile("production")
-	@Bean(name = "prddataSource")
-	public DataSource getProductionDataSource() {
-
-		JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-		jndiObjectFactoryBean.setJndiName("java:comp/env/jdbc/ecommerceDS");
-		jndiObjectFactoryBean.setResourceRef(true);
-		jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
-		System.out.println("Production Datasource  with JNDI LookUp is ready!!");
-		return (DataSource) jndiObjectFactoryBean.getObject();
-		
-
-	}
-*/
+	/*
+	 * @Profile("production")
+	 * 
+	 * @Bean(name = "prddataSource") public DataSource getProductionDataSource()
+	 * {
+	 * 
+	 * JndiObjectFactoryBean jndiObjectFactoryBean = new
+	 * JndiObjectFactoryBean();
+	 * jndiObjectFactoryBean.setJndiName("java:comp/env/jdbc/ecommerceDS");
+	 * jndiObjectFactoryBean.setResourceRef(true);
+	 * jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
+	 * System.out.println("Production Datasource  with JNDI LookUp is ready!!");
+	 * return (DataSource) jndiObjectFactoryBean.getObject();
+	 * 
+	 * 
+	 * }
+	 */
 	private Properties getHibernateProperties() {
 		Properties properties = new Properties();
 		properties.put("hibernate.show_sql", "true");
